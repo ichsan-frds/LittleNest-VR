@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bowl
   - Baby
+  - Soap
   layers:
   - Default
   - TransparentFX
