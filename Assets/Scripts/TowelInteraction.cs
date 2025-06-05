@@ -1,10 +1,12 @@
 using UnityEngine;
+using System.Collections;
 
 public class TowelInteraction : MonoBehaviour
 {
     public TaskManager taskManager;
+    public CountdownTimer countdownTimer; // ✅ Wajib di-assign di Inspector
     public EmoteController emoteController;
-    public WetEffectManager wetEffectManager; // Mengontrol efek basah di bayi
+    public WetEffectManager wetEffectManager;
 
     private bool isUsed = false;
 
@@ -14,51 +16,61 @@ public class TowelInteraction : MonoBehaviour
 
         if (other.CompareTag("Baby"))
         {
-            // ✅ Cek apakah sedang di task "Memandikan" (index 0)
-            if (taskManager != null && taskManager.GetCurrentTaskIndex() == 0)
+            StartCoroutine(HandleTowelLogic());
+        }
+    }
+
+    private IEnumerator HandleTowelLogic()
+    {
+        yield return new WaitForSeconds(0.1f); // ✅ Delay 1 frame agar efek sabun & air sempat aktif
+
+        // ✅ Cek dari CountdownTimer yang lebih akurat
+        int currentTask = countdownTimer != null ? countdownTimer.GetCurrentTaskIndex() : 
+                         (taskManager != null ? taskManager.GetCurrentTaskIndex() : -1);
+
+        Debug.Log($"[TOWEL DEBUG] Current Task Index: {currentTask}");
+
+        if (currentTask == 0) // Task memandikan
+        {
+            if (SoapInteraction.IsSoaped && wetEffectManager != null && wetEffectManager.IsPlaying())
             {
-                // 🔽 Tandai task selesai dan lanjutkan
-                taskManager.MarkCurrentTaskComplete();
-                taskManager.NextTask();
+                Debug.Log("[TOWEL ✅] Syarat terpenuhi. Memproses...");
 
-                // 🔽 Matikan efek basah
-                if (wetEffectManager != null)
+                // ✅ PERBAIKAN: Hanya panggil SATU fungsi, biar CountdownTimer yang handle semua
+                if (countdownTimer != null)
                 {
-                    wetEffectManager.StopEffect();
-                    Debug.Log("[TOWEL] Efek basah dimatikan oleh handuk.");
+                    countdownTimer.NotifyTaskSuccessFromInteraction();
+                    Debug.Log("[TOWEL ✅] NotifyTaskSuccessFromInteraction() dipanggil.");
                 }
-                else
+                else if (taskManager != null)
                 {
-                    Debug.LogWarning("[TOWEL] WetEffectManager belum di-assign!");
+                    // Fallback jika CountdownTimer tidak ada
+                    Debug.LogWarning("[TOWEL ⚠️] CountdownTimer null! Menggunakan TaskManager langsung.");
+                    taskManager.MarkCurrentTaskComplete();
+                    taskManager.NextTask();
                 }
 
-                // 🔽 Tampilkan ekspresi senang
-                if (emoteController != null)
-                {
-                    emoteController.ShowHappy();
-                    Debug.Log("[TOWEL] Emote senang ditampilkan.");
-                }
-                else
-                {
-                    Debug.LogWarning("[TOWEL] EmoteController belum di-assign!");
-                }
+                // ✅ Matikan efek air
+                wetEffectManager.StopEffect();
+                Debug.Log("[TOWEL] Efek basah dimatikan oleh handuk.");
+
+                // ✅ Emote happy
+                emoteController?.ShowHappy();
+                Debug.Log("[TOWEL] Emote senang ditampilkan.");
 
                 isUsed = true;
-                Debug.Log("[TOWEL] Bayi dikeringkan. Task 'Memandikan' selesai.");
+                Debug.Log("[TOWEL ✅] Bayi dikeringkan. Task 'Memandikan' selesai.");
             }
             else
             {
-                // 🔽 Task belum waktunya: tampilkan emote marah
-                if (emoteController != null)
-                {
-                    emoteController.ShowAngry();
-                    Debug.Log("[TOWEL] Belum waktunya mengeringkan bayi! Emote marah ditampilkan.");
-                }
-                else
-                {
-                    Debug.LogWarning("[TOWEL] EmoteController belum di-assign!");
-                }
+                Debug.LogWarning($"[TOWEL ❌] Syarat belum terpenuhi. Soap: {SoapInteraction.IsSoaped}, Air: {wetEffectManager?.IsPlaying()}");
+                emoteController?.ShowAngry();
             }
+        }
+        else
+        {
+            Debug.Log($"[TOWEL ❌] Bukan task 'Memandikan'. Current index: {currentTask}");
+            emoteController?.ShowAngry();
         }
     }
 }

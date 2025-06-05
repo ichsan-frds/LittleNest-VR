@@ -4,8 +4,12 @@ public class SoapInteraction : MonoBehaviour
 {
     public GameObject foamEffect;
 
+    // ✅ Tambahkan penanda global agar bisa dicek dari script lain (misalnya TowelInteraction)
+    public static bool IsSoaped = false;
+
     private void Start()
     {
+        IsSoaped = false; // Reset setiap awal permainan
         Debug.Log($"[SOAP] Script aktif di: {gameObject.name}");
     }
 
@@ -20,7 +24,8 @@ public class SoapInteraction : MonoBehaviour
             if (foamEffect != null)
             {
                 foamEffect.SetActive(true);
-                Debug.Log("[SOAP] Efek busa diaktifkan.");
+                IsSoaped = true; // ✅ Tandai bahwa sabun sudah digunakan
+                Debug.Log("[SOAP] Efek busa diaktifkan & status IsSoaped = true.");
             }
             else
             {
@@ -31,5 +36,12 @@ public class SoapInteraction : MonoBehaviour
         {
             Debug.Log("[SOAP] Objek yang disentuh BUKAN bayi. Tidak ada aksi.");
         }
+    }
+
+    // Optional: fungsi untuk reset jika mau digunakan ulang
+    public static void ResetSoapStatus()
+    {
+        IsSoaped = false;
+        Debug.Log("[SOAP] Status sabun di-reset.");
     }
 }
