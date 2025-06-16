@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 37096468}
   - component: {fileID: 37096467}
   m_Layer: 5
-  m_Name: desc
+  m_Name: desc5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -168, y: 3}
+  m_AnchoredPosition: {x: -281, y: -77}
   m_SizeDelta: {x: 505.0628, y: 100.5707}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &37096467
@@ -181,8 +181,8 @@ MonoBehaviour:
     Bring baby to bathroom, use water and soap\n- Soothing: Use toys or gently rock
     the baby"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
-  m_sharedMaterial: {fileID: -2616443266058693945, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 964b147896d0c8242957938ee8d0a175, type: 2}
+  m_sharedMaterial: {fileID: 3732178300759354122, guid: 964b147896d0c8242957938ee8d0a175, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 55.01024, y: 0, z: -27.333328, w: 29.119501}
+  m_margin: {x: 55.01024, y: -44.82525, z: -149.16646, w: 29.119501}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 115106086}
   - component: {fileID: 115106085}
   m_Layer: 5
-  m_Name: title
+  m_Name: title5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,7 +349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -289, y: 161}
+  m_AnchoredPosition: {x: -240, y: 79}
   m_SizeDelta: {x: 469.1791, y: 52.8211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &115106085
@@ -374,16 +374,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: Basic Baby Care
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6b41dc7fd80f05f468eaac4a582fb9ce, type: 2}
-  m_sharedMaterial: {fileID: 1550772666814401018, guid: 6b41dc7fd80f05f468eaac4a582fb9ce, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 055490e3ceded884bbfcef5581db6497, type: 2}
+  m_sharedMaterial: {fileID: -7749836774120913383, guid: 055490e3ceded884bbfcef5581db6497, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4288511971
-  m_fontColor: {r: 0.8901961, g: 0.49803922, b: 0.6156863, a: 1}
-  m_enableVertexGradient: 1
+    rgba: 4278192217
+  m_fontColor: {r: 0.34901962, g: 0.03137255, b: 0, a: 1}
+  m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 0.7445507, g: 0.98269874, b: 0.9900321, a: 1}
@@ -487,7 +487,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -487, y: -154.3}
+  m_AnchoredPosition: {x: -477, y: -154.3}
   m_SizeDelta: {x: 160, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &125822647
@@ -814,8 +814,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Next
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
-  m_sharedMaterial: {fileID: -2616443266058693945, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
+  m_sharedMaterial: {fileID: 502660372515422852, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -839,8 +839,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -950,8 +950,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Previous
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
-  m_sharedMaterial: {fileID: -2616443266058693945, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
+  m_sharedMaterial: {fileID: 502660372515422852, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -975,8 +975,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1168,7 +1168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 239, y: -156}
+  m_AnchoredPosition: {x: 231, y: -156}
   m_SizeDelta: {x: 160, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1144789726

@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 37096468}
   - component: {fileID: 37096467}
   m_Layer: 5
-  m_Name: desc
+  m_Name: desc3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -194, y: 89}
+  m_AnchoredPosition: {x: -219, y: -7}
   m_SizeDelta: {x: 512.7267, y: 100.5707}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &37096467
@@ -184,8 +184,8 @@ MonoBehaviour:
     - Move between rooms: Use joystick or
     teleportation tool'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
-  m_sharedMaterial: {fileID: -2616443266058693945, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 964b147896d0c8242957938ee8d0a175, type: 2}
+  m_sharedMaterial: {fileID: 3732178300759354122, guid: 964b147896d0c8242957938ee8d0a175, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 55.01024, y: 0, z: -27.333328, w: 29.119501}
+  m_margin: {x: 55.01024, y: 0, z: -48.596542, w: 29.119501}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 115106086}
   - component: {fileID: 115106085}
   m_Layer: 5
-  m_Name: title
+  m_Name: title3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,7 +352,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -242, y: 161}
+  m_AnchoredPosition: {x: -253, y: 79}
   m_SizeDelta: {x: 469.1791, y: 52.8211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &115106085
@@ -377,16 +377,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: How to Interact in VR
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6b41dc7fd80f05f468eaac4a582fb9ce, type: 2}
-  m_sharedMaterial: {fileID: 1550772666814401018, guid: 6b41dc7fd80f05f468eaac4a582fb9ce, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 055490e3ceded884bbfcef5581db6497, type: 2}
+  m_sharedMaterial: {fileID: -7749836774120913383, guid: 055490e3ceded884bbfcef5581db6497, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4288511971
-  m_fontColor: {r: 0.8901961, g: 0.49803922, b: 0.6156863, a: 1}
-  m_enableVertexGradient: 1
+    rgba: 4278192217
+  m_fontColor: {r: 0.34901962, g: 0.03137255, b: 0, a: 1}
+  m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 0.7445507, g: 0.98269874, b: 0.9900321, a: 1}
@@ -817,8 +817,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Next
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
-  m_sharedMaterial: {fileID: -2616443266058693945, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
+  m_sharedMaterial: {fileID: 502660372515422852, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -842,8 +842,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -953,8 +953,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Previous
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
-  m_sharedMaterial: {fileID: -2616443266058693945, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
+  m_sharedMaterial: {fileID: 502660372515422852, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -978,8 +978,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1509,7 +1509,7 @@ GameObject:
   - component: {fileID: 1696959985}
   - component: {fileID: 1696959984}
   m_Layer: 5
-  m_Name: desc (1)
+  m_Name: desc3-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1531,7 +1531,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -194, y: -55}
+  m_AnchoredPosition: {x: -194, y: -90.3}
   m_SizeDelta: {x: 512.7267, y: 100.5707}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1696959984
@@ -1554,10 +1554,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Interact with objects like: \nbaby bottle, \ndiaper, \nsoap, \ntoy, \nthermometer"
+  m_text: 'Interact with objects like: baby bottle,  diaper,  soap,  toy, and thermometer.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
-  m_sharedMaterial: {fileID: -2616443266058693945, guid: 14473b71150d0fd4f8e3b507860192fa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 964b147896d0c8242957938ee8d0a175, type: 2}
+  m_sharedMaterial: {fileID: 3732178300759354122, guid: 964b147896d0c8242957938ee8d0a175, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1588,7 +1588,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 3.68
@@ -1619,7 +1619,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 55.01024, y: 0, z: -27.333328, w: 29.119501}
+  m_margin: {x: 55.01024, y: 17.81514, z: -18.712997, w: 29.119501}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
