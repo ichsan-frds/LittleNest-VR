@@ -4,6 +4,7 @@ public class ParacetamolInteraction : MonoBehaviour
 {
     [Header("Referensi")]
     public EmoteController emoteController; // Assign EmoteController dari scene Anda
+    public CountdownTimerStage2 countdownTimer; // <<< BARU: Referensi ke CountdownTimerStage2
 
     [Header("Pengaturan Interaksi")]
     public string babyTag = "Baby"; // Tag untuk GameObject bayi
@@ -11,11 +12,7 @@ public class ParacetamolInteraction : MonoBehaviour
 
     private float currentContactTime = 0f;
     private bool isTouchingBaby = false;
-    private bool actionHasBeenTriggered = false; // Untuk memastikan emote hanya muncul sekali per interaksi panjang
-
-    // Jika interaksi ini spesifik untuk stage tertentu (misal Stage 2)
-    // Anda bisa menambahkan referensi ke SceneController di sini jika ingin mengecek stage secara internal
-    // public SceneController sceneController; 
+    private bool actionHasBeenTriggered = false; // Untuk memastikan aksi hanya terjadi sekali per sentuhan
 
     void Start()
     {
@@ -23,42 +20,43 @@ public class ParacetamolInteraction : MonoBehaviour
         {
             Debug.LogError("❌ ParacetamolInteraction: EmoteController belum di-assign di Inspector!");
         }
-        // Jika menggunakan pengecekan stage internal:
-        // if (sceneController == null)
-        // {
-        //    Debug.LogWarning("ParacetamolInteraction: SceneController belum di-assign. Pengecekan stage mungkin tidak berfungsi.");
-        // }
+        if (countdownTimer == null) // BARU: Peringatan jika referensi kosong
+        {
+            Debug.LogError("❌ ParacetamolInteraction: CountdownTimerStage2 belum di-assign di Inspector!");
+        }
     }
 
     void Update()
     {
-        // Jika interaksi ini spesifik untuk Stage 2 dan Anda ingin skrip ini mengeceknya:
-        // if (sceneController != null && sceneController.currentActiveStage != SceneController.GameStage.Stage2)
-        // {
-        //     // Jika bukan Stage 2, jangan lakukan apa-apa atau pastikan state interaksi direset
-        //     if (isTouchingBaby) // Jika sedang menyentuh bayi tapi stage salah, reset
-        //     {
-        //         isTouchingBaby = false;
-        //         currentContactTime = 0f;
-        //     }
-        //     return; 
-        // }
-
+        // Hanya proses interaksi jika sedang menyentuh bayi dan aksi belum terpicu
         if (isTouchingBaby && !actionHasBeenTriggered)
         {
             currentContactTime += Time.deltaTime;
 
             if (currentContactTime >= requiredContactDuration)
             {
-                if (emoteController != null)
+                // VALIDASI TASK: Pastikan ini adalah task "Memberi Obat" (asumsi Task 1)
+                // Dapatkan indeks task aktif dari CountdownTimerStage2
+                if (countdownTimer != null && countdownTimer.GetCurrentActiveTaskIndex() == 1) // Asumsi "Memberi Obat" adalah task index 1
                 {
-                    Debug.Log("Paracetamol: Kontak cukup lama, bayi diberi paracetamol, menampilkan emote happy.");
-                    emoteController.ShowHappy(); // Panggil emote happy
-                    actionHasBeenTriggered = true; // Tandai bahwa aksi sudah dilakukan untuk interaksi ini
+                    Debug.Log("Paracetamol: Kontak cukup lama, bayi diberi paracetamol.");
+                    
+                    // --- GANTI LOGIKA EMOTE INI DENGAN PEMANGGILAN MarkCurrentTaskAsSuccess() ---
+                    // Logika emote akan ditangani di CountdownTimerStage2 atau TaskManager2 setelah task sukses
+                    // if (emoteController != null) {
+                    //    emoteController.ShowHappy(); 
+                    // }
+
+                    // Ini adalah kunci: Beri tahu CountdownTimerStage2 bahwa task berhasil!
+                    countdownTimer.MarkCurrentTaskAsSuccess();
+                    actionHasBeenTriggered = true; // Tandai aksi sudah dilakukan
                 }
-                else
+                else if (countdownTimer != null)
                 {
-                    Debug.LogError("❌ ParacetamolInteraction: EmoteController null, tidak bisa menampilkan emote.");
+                    Debug.LogWarning($"Paracetamol: Bukan waktu yang tepat untuk memberi obat! Task aktif: {countdownTimer.GetCurrentActiveTaskIndex()}.");
+                    // Opsional: Reset contact time atau berikan feedback negatif jika interaksi salah
+                    isTouchingBaby = false;
+                    currentContactTime = 0f;
                 }
             }
         }
@@ -68,16 +66,10 @@ public class ParacetamolInteraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(babyTag))
         {
-            // Opsi: Cek stage di sini juga jika perlu, sebelum memulai timer
-            // if (sceneController != null && sceneController.currentActiveStage != SceneController.GameStage.Stage2)
-            // {
-            //     return; // Jangan mulai interaksi jika bukan stage yang tepat
-            // }
-
             Debug.Log("Paracetamol: Mulai bersentuhan dengan bayi.");
             isTouchingBaby = true;
             currentContactTime = 0f;
-            actionHasBeenTriggered = false;
+            actionHasBeenTriggered = false; // Reset untuk interaksi baru
         }
     }
 
@@ -88,11 +80,8 @@ public class ParacetamolInteraction : MonoBehaviour
             Debug.Log("Paracetamol: Berhenti bersentuhan dengan bayi.");
             isTouchingBaby = false;
             currentContactTime = 0f;
-            // Jika Anda ingin emote happy hilang saat paracetamol dilepas:
-            // if (emoteController != null && actionHasBeenTriggered) {
-            //     emoteController.HideAllDisplays();
-            // }
-            // actionHasBeenTriggered = false; // Tidak perlu direset di sini, sudah di OnCollisionEnter
+            // actionHasBeenTriggered = false; // Ini bisa tetap true atau direset tergantung kebutuhan
+                                             // Biasanya direset di OnCollisionEnter
         }
     }
 }
