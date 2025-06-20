@@ -4,69 +4,93 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class EmoteController : MonoBehaviour
 {
-    [Header("Sprite Emote")]
+    [Header("Sprite Emotes & Status")]
     public Sprite happySprite;
     public Sprite angrySprite;
+    public Sprite feverEmoteSprite;
+    public Sprite thirtyNineDegreeSprite;
+    public Sprite loveSprite; // BARU: Untuk emote love
 
-    private Image emoteImage;
+    private Image displayImage;
 
-    void Start()
+    void Awake()
     {
-        emoteImage = GetComponent<Image>();
+        Debug.Log($"EmoteController: Awake() dipanggil untuk GameObject: '{this.gameObject.name}', " +
+                  $"activeSelf: {this.gameObject.activeSelf}, activeInHierarchy: {this.gameObject.activeInHierarchy}");
 
-        if (emoteImage == null)
+        displayImage = GetComponent<Image>();
+
+        if (displayImage == null)
         {
-            Debug.LogError("❌ EmoteController: Komponen Image tidak ditemukan!");
+            Debug.LogError($"❌ EmoteController: Komponen Image TIDAK DITEMUKAN pada GameObject '{this.gameObject.name}' saat Awake!");
+        }
+        else
+        {
+            Debug.Log($"EmoteController: Komponen Image BERHASIL DITEMUKAN pada GameObject '{this.gameObject.name}'.");
+            displayImage.enabled = false;
+        }
+
+        if (happySprite == null || angrySprite == null || feverEmoteSprite == null || thirtyNineDegreeSprite == null || loveSprite == null) // Perbarui validasi
+        {
+            Debug.LogWarning("⚠️ EmoteController: Tidak semua sprite (happy, angry, fever, 39 degree, love) telah di-assign di Inspector.");
+        }
+    }
+
+    private void ShowSprite(Sprite spriteToShow)
+    {
+        if (displayImage == null)
+        {
+            Debug.LogError($"⚠️ Tampilkan Sprite gagal: displayImage (komponen Image) masih null di GameObject '{this.gameObject.name}'. " +
+                           "Pastikan Awake() berjalan dengan benar dan menemukan Image.");
+            return;
+        }
+        if (spriteToShow == null)
+        {
+            Debug.LogWarning($"⚠️ Tampilkan Sprite gagal pada GameObject '{this.gameObject.name}': " +
+                             "spriteToShow (gambar yang ingin ditampilkan) null. Pastikan sudah di-assign di Inspector.");
+            displayImage.enabled = false;
             return;
         }
 
-        emoteImage.enabled = false; // Sembunyikan saat awal
-    }
-
-    void Update()
-    {
-        // Tes manual: 1 = hide, 2 = angry, 3 = happy
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            HideEmote();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ShowAngry();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ShowHappy();
-        }
+        displayImage.sprite = spriteToShow;
+        displayImage.enabled = true;
+        Debug.Log($"EmoteController: Menampilkan sprite '{spriteToShow.name}' pada GameObject '{this.gameObject.name}'.");
     }
 
     public void ShowHappy()
     {
-        if (emoteImage == null || happySprite == null)
-        {
-            Debug.LogWarning("⚠️ ShowHappy gagal: komponen/sprite belum diisi.");
-            return;
-        }
-
-        emoteImage.sprite = happySprite;
-        emoteImage.enabled = true;
+        ShowSprite(happySprite);
     }
 
     public void ShowAngry()
     {
-        if (emoteImage == null || angrySprite == null)
-        {
-            Debug.LogWarning("⚠️ ShowAngry gagal: komponen/sprite belum diisi.");
-            return;
-        }
-
-        emoteImage.sprite = angrySprite;
-        emoteImage.enabled = true;
+        ShowSprite(angrySprite);
     }
 
-    public void HideEmote()
+    public void ShowFeverEmote()
     {
-        if (emoteImage != null)
-            emoteImage.enabled = false;
+        ShowSprite(feverEmoteSprite);
+    }
+
+    public void Show39DegreeTemperature()
+    {
+        ShowSprite(thirtyNineDegreeSprite);
+    }
+
+    public void ShowLove() // BARU
+    {
+        ShowSprite(loveSprite);
+    }
+
+    public void HideAllDisplays()
+    {
+        if (displayImage != null)
+        {
+            displayImage.enabled = false;
+        }
+        else
+        {
+            Debug.LogWarning($"⚠️ HideAllDisplays: displayImage null di GameObject '{this.gameObject.name}'.");
+        }
     }
 }
