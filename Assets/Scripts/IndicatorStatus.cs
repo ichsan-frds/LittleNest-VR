@@ -31,7 +31,14 @@ public class IndicatorStatus : MonoBehaviour
     // Tandai task berhasil/gagal satu kali
     public void SetTaskStatus(int index, bool isSuccess)
     {
-        if (index < 0 || index >= indicatorCircles.Count) return;
+        if (index < 0 || index >= indicatorCircles.Count) {
+            Debug.LogWarning($"IndicatorStatus: Index {index} di luar batas untuk indicatorCircles.");
+            return;
+        }
+        if (indicatorCircles[index] == null) { // Tambahkan null check untuk elemen list
+            Debug.LogWarning($"IndicatorStatus: indicatorCircles[{index}] adalah null.");
+            return;
+        }
 
         if (statusLocked[index]) return; // ❗ Cegah perubahan ulang
 
