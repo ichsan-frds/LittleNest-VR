@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Font.meta
 guid: ea623239fe42daa4ba0ddf8cfdb8c1dc
+========
+guid: 6d3997385f8d0e142b155e586cc8f4e1
+>>>>>>>> origin/stage-2:Assets/Paracetamol.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
