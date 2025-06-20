@@ -12,19 +12,19 @@ public class CountdownTimer : MonoBehaviour
 
     public IndicatorStatus indicatorStatus;
     public TaskManager taskManager;
+    public SpoonInteraction spoonInteraction;
 
     private float taskStartTime;
     private float maxTaskTime = 120f;
     private bool[] taskCompleted;
-    private int currentTaskIndex = 0;
 
     private bool isTaskRunning = true;
     private bool isTransitioning = false;
+    private bool isReadyToTrackTime = false;
 
     void Start()
     {
         remainingTime = totalTime;
-        taskStartTime = Time.time;
 
         int totalTasks = indicatorStatus != null ? indicatorStatus.indicatorCircles.Count : 5;
         taskCompleted = new bool[totalTasks];
@@ -32,9 +32,15 @@ public class CountdownTimer : MonoBehaviour
         if (timerText == null) Debug.LogWarning("❗ timerText belum di-assign!");
         if (taskManager == null) Debug.LogWarning("❗ taskManager belum di-assign!");
 
+        isTaskRunning = true;
+        isTransitioning = false;
+        isReadyToTrackTime = false;
+
         UpdateTimerDisplay();
+
+        int currentTaskIndex = taskManager.GetCurrentTaskIndex();
         taskManager?.ShowOnlyCurrentTask(currentTaskIndex);
-        Debug.Log($"🏁 Task {currentTaskIndex} dimulai pada Time.time: {Time.time:F2}");
+        StartCoroutine(DelayStartNextTask()); // ✅ pastikan timer task mulai setelah frame pertama
     }
 
     void Update()
@@ -46,10 +52,13 @@ public class CountdownTimer : MonoBehaviour
             remainingTime -= Time.deltaTime;
             UpdateTimerDisplay();
 
-            if (!isTransitioning && isTaskRunning && IsValidTaskIndex(currentTaskIndex) && !taskCompleted[currentTaskIndex])
+            int currentTaskIndex = taskManager.GetCurrentTaskIndex();
+
+            if (!isTransitioning && isTaskRunning && isReadyToTrackTime &&
+                IsValidTaskIndex(currentTaskIndex) && !taskCompleted[currentTaskIndex])
             {
                 float elapsedTaskTime = Time.time - taskStartTime;
-                
+
                 if (elapsedTaskTime >= maxTaskTime)
                 {
                     Debug.Log($"⏰ Task {currentTaskIndex} melebihi waktu ({elapsedTaskTime:F2}s)");
@@ -77,7 +86,9 @@ public class CountdownTimer : MonoBehaviour
 
     public void MarkCurrentTaskAsSuccess()
     {
-        if (IsCurrentTaskInvalid()) return;
+        int currentTaskIndex = taskManager.GetCurrentTaskIndex();
+
+        if (IsCurrentTaskInvalid(currentTaskIndex)) return;
 
         var currentStatus = taskManager.GetTaskResult(currentTaskIndex);
         if (currentStatus == TaskManager.TaskStatus.Failed)
@@ -97,15 +108,15 @@ public class CountdownTimer : MonoBehaviour
             taskManager?.MarkCurrentTaskComplete();
 
             Debug.Log($"✅ Task {currentTaskIndex} selesai dalam {elapsedTaskTime:F2} detik.");
-            
-            // ✅ PERBAIKAN: Hapus duplikasi - hanya GoToNextTask() yang akan handle NextTask()
             GoToNextTask();
         }
     }
 
     void MarkCurrentTaskAsFailed()
     {
-        if (IsCurrentTaskInvalid()) return;
+        int currentTaskIndex = taskManager.GetCurrentTaskIndex();
+
+        if (IsCurrentTaskInvalid(currentTaskIndex)) return;
 
         if (!taskCompleted[currentTaskIndex])
         {
@@ -117,8 +128,6 @@ public class CountdownTimer : MonoBehaviour
             taskManager?.MarkCurrentTaskFailed();
 
             Debug.Log($"❌ Task {currentTaskIndex} GAGAL setelah {elapsedTaskTime:F2} detik (batas: {maxTaskTime}s).");
-            
-            // ✅ PERBAIKAN: Hapus duplikasi - hanya GoToNextTask() yang akan handle NextTask()
             GoToNextTask();
         }
     }
@@ -127,20 +136,19 @@ public class CountdownTimer : MonoBehaviour
     {
         isTaskRunning = false;
         isTransitioning = true;
-        
-        // ✅ PERBAIKAN: Panggil NextTask() di sini saja, tidak di MarkCurrentTaskAsSuccess/Failed
-        taskManager?.NextTask();
-        
-        currentTaskIndex++;
+        isReadyToTrackTime = false;
 
-        if (currentTaskIndex < taskCompleted.Length)
+        taskManager?.NextTask();
+
+        int nextIndex = taskManager.GetCurrentTaskIndex();
+        if (nextIndex < taskCompleted.Length)
         {
             StartCoroutine(DelayStartNextTask());
         }
         else
         {
             Debug.Log("🎉 Semua task selesai!");
-            taskManager?.ShowOnlyCurrentTask(currentTaskIndex);
+            taskManager?.ShowOnlyCurrentTask(nextIndex);
             StartCoroutine(DelayCheckEnding());
         }
     }
@@ -152,17 +160,18 @@ public class CountdownTimer : MonoBehaviour
         taskStartTime = Time.time;
         isTaskRunning = true;
         isTransitioning = false;
+        isReadyToTrackTime = true;
 
+        int currentTaskIndex = taskManager.GetCurrentTaskIndex();
         taskManager?.ShowOnlyCurrentTask(currentTaskIndex);
+
         Debug.Log($"➡️ Task {currentTaskIndex} dimulai pada Time.time: {taskStartTime:F2}");
-        
-        // ✅ Debug tambahan untuk memastikan sinkronisasi
-        Debug.Log($"[SYNC CHECK] CountdownTimer.currentTaskIndex = {currentTaskIndex}, TaskManager.GetCurrentTaskIndex() = {taskManager?.GetCurrentTaskIndex()}");
+        Debug.Log($"[SYNC CHECK] CountdownTimer.GetCurrentTaskIndex() = {currentTaskIndex}");
     }
 
-    private bool IsCurrentTaskInvalid()
+    private bool IsCurrentTaskInvalid(int index)
     {
-        return !IsValidTaskIndex(currentTaskIndex) || taskCompleted[currentTaskIndex];
+        return !IsValidTaskIndex(index) || taskCompleted[index];
     }
 
     private bool IsValidTaskIndex(int index)
@@ -172,6 +181,7 @@ public class CountdownTimer : MonoBehaviour
 
     public void NotifyTaskSuccessFromInteraction()
     {
+        int currentTaskIndex = taskManager.GetCurrentTaskIndex();
         Debug.Log($"🟢 Task {currentTaskIndex} mendapat notifikasi sukses dari interaksi eksternal.");
         MarkCurrentTaskAsSuccess();
     }
@@ -180,24 +190,26 @@ public class CountdownTimer : MonoBehaviour
     {
         remainingTime = totalTime;
         isRunning = true;
-        currentTaskIndex = 0;
         taskStartTime = Time.time;
         isTaskRunning = true;
         isTransitioning = false;
+        isReadyToTrackTime = true;
 
         for (int i = 0; i < taskCompleted.Length; i++)
             taskCompleted[i] = false;
 
         indicatorStatus?.ResetAll();
         taskManager?.ResetTasks();
+        spoonInteraction?.ResetFeeding();
 
         UpdateTimerDisplay();
-        taskManager?.ShowOnlyCurrentTask(currentTaskIndex);
-        Debug.Log($"🔄 Timer direset. Task 0 dimulai pada: {taskStartTime:F2}");
+        taskManager?.ShowOnlyCurrentTask(taskManager.GetCurrentTaskIndex());
+        Debug.Log($"🔄 Timer direset. Task {taskManager.GetCurrentTaskIndex()} dimulai pada: {taskStartTime:F2}");
     }
 
     public void GetCurrentTaskInfo()
     {
+        int currentTaskIndex = taskManager.GetCurrentTaskIndex();
         if (IsValidTaskIndex(currentTaskIndex))
         {
             float elapsed = Time.time - taskStartTime;
@@ -207,7 +219,7 @@ public class CountdownTimer : MonoBehaviour
 
     public int GetCurrentTaskIndex()
     {
-        return currentTaskIndex;
+        return taskManager?.GetCurrentTaskIndex() ?? -1;
     }
 
     private IEnumerator DelayCheckEnding()

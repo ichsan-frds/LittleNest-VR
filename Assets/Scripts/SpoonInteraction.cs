@@ -17,7 +17,7 @@ public class SpoonInteraction : MonoBehaviour
         string objName = other.gameObject.name.ToLower();
         Debug.Log($"[SPOON DEBUG] Menyentuh objek: {objName}");
 
-        // ✅ Mengambil bubur dari mangkok
+        // ✅ Ambil bubur dari mangkok
         if (objName.Contains("bowl") || objName.Contains("mangkok") || objName.Contains("bubur"))
         {
             if (isiSendok != null && !isiSendok.activeSelf)
@@ -28,8 +28,8 @@ public class SpoonInteraction : MonoBehaviour
             return;
         }
 
-        // ✅ Memberi makan bayi
-        if (objName.Contains("mouth") || objName.Contains("tongue") || objName.Contains("baby"))
+        // ✅ Ubah logika: asal menyentuh bayi (TAG "Baby"), langsung berhasil
+        if (other.CompareTag("Baby"))
         {
             if (isiSendok == null || !isiSendok.activeSelf)
             {
@@ -38,13 +38,11 @@ public class SpoonInteraction : MonoBehaviour
                 return;
             }
 
-            // ✅ Cek task index
-            int timerTask = countdownTimer != null ? countdownTimer.GetCurrentTaskIndex() : -1;
-            int managerTask = taskManager != null ? taskManager.GetCurrentTaskIndex() : -1;
+            int currentTaskIndex = taskManager?.GetCurrentTaskIndex() ?? -1;
 
-            Debug.Log($"[SPOON DEBUG] Timer Task: {timerTask}, Manager Task: {managerTask}");
+            Debug.Log($"[SPOON DEBUG] Current Task Index: {currentTaskIndex}");
 
-            if ((timerTask == 3 || managerTask == 3) && !hasFedBaby)
+            if (currentTaskIndex == 3 && !hasFedBaby)
             {
                 Debug.Log("[SPOON ✅] Task 'Memberi Makan' dimulai.");
 
@@ -53,17 +51,16 @@ public class SpoonInteraction : MonoBehaviour
 
                 if (countdownTimer != null)
                 {
-                    countdownTimer.NotifyTaskSuccessFromInteraction(); // ✅ Biarkan timer handle next task
+                    countdownTimer.NotifyTaskSuccessFromInteraction(); // ✅ Biarkan CountdownTimer handle next task
                     Debug.Log("[SPOON ✅] NotifyTaskSuccessFromInteraction() dipanggil.");
                 }
                 else if (taskManager != null)
                 {
                     taskManager.MarkCurrentTaskComplete();
-                    // ❌ Jangan panggil taskManager.NextTask() di sini agar tidak desync
                     Debug.LogWarning("[SPOON ⚠️] CountdownTimer null! Tidak bisa lanjut task otomatis.");
                 }
 
-                taskManager?.SetBottleGiven(); // dibutuhkan untuk task 5 (tidur)
+                taskManager?.SetBottleGiven(); // dibutuhkan untuk task tidur
                 emoteController?.ShowHappy();
                 hasFedBaby = true;
 
@@ -71,9 +68,16 @@ public class SpoonInteraction : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"[SPOON ❌] Bukan task 'Memberi Makan'. Task sekarang: {managerTask}");
+                Debug.LogWarning($"[SPOON ❌] Bukan saatnya memberi makan. Task sekarang: {currentTaskIndex}");
                 emoteController?.ShowAngry();
             }
         }
+    }
+
+    // ✅ Reset state agar bisa digunakan ulang saat game direset
+    public void ResetFeeding()
+    {
+        hasFedBaby = false;
+        Debug.Log("[SPOON RESET] Feeding state di-reset.");
     }
 }
