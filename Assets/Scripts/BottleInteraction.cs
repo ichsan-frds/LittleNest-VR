@@ -4,7 +4,7 @@ public class BottleInteraction : MonoBehaviour
 {
     public TaskManager taskManager;
     public EmoteController emoteController;
-    public CountdownTimer countdownTimer; // ✅ Tambahkan jika pakai CountdownTimer
+    public CountdownTimerStage1 countdownTimer; // ✅ Tambahkan jika pakai CountdownTimer
 
     private bool isUsed = false;
 

@@ -4,7 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class DiaperInteraction : MonoBehaviour
 {
     public TaskManager taskManager;
-    public CountdownTimer countdownTimer;
+    public CountdownTimerStage1 countdownTimer;
     public EmoteController emoteController;
 
     private bool isUsed = false;
