@@ -5,7 +5,7 @@ public class FishInteraction : MonoBehaviour
     [Header("Referensi Objek")]
     public EmoteController emoteController;
     public TaskManager taskManager;
-    public CountdownTimer countdownTimer; // ✅ WAJIB assign via Inspector
+    public CountdownTimerStage1 countdownTimer; // ✅ WAJIB assign via Inspector
 
     private bool hasCalmedBaby = false;
 

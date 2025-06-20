@@ -1455,7 +1455,6 @@ MonoBehaviour:
   isiSendok: {fileID: 702916293}
   emoteController: {fileID: 2000593397}
   taskManager: {fileID: 597887085}
-  countdownTimer: {fileID: 1588947095}
 --- !u!1 &103498627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,7 +2253,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   taskManager: {fileID: 597887085}
-  countdownTimer: {fileID: 1588947095}
   emoteController: {fileID: 2000593397}
 --- !u!54 &177186006
 Rigidbody:
@@ -4714,6 +4712,7 @@ GameObject:
   m_Component:
   - component: {fileID: 597887084}
   - component: {fileID: 597887085}
+  - component: {fileID: 597887086}
   m_Layer: 0
   m_Name: TaskManagerController
   m_TagString: Untagged
@@ -4747,13 +4746,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597887083}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24ead8ab675041247aa306d1c8417a0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   taskText: {fileID: 1176370373}
   indicatorStatus: {fileID: 692527107}
+--- !u!114 &597887086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597887083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244cb28c9aa8e76438966fb3c648bf3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskText: {fileID: 1176370373}
+  babyEmoteController: {fileID: 2000593397}
 --- !u!1001 &600798098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8881,7 +8894,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Task List
 
-    PLACEHOLDER'
+    1. Mengukur suhu
+
+    2. Memberi obat'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9581,7 +9596,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   taskManager: {fileID: 597887085}
-  countdownTimer: {fileID: 1588947095}
   emoteController: {fileID: 2000593397}
 --- !u!1001 &1258776464
 PrefabInstance:
@@ -10236,7 +10250,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   taskManager: {fileID: 597887085}
-  countdownTimer: {fileID: 1588947095}
   emoteController: {fileID: 2000593397}
   wetEffectManager: {fileID: 1391602434}
 --- !u!54 &1377124797
@@ -29570,6 +29583,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   happySprite: {fileID: 21300000, guid: d2f330483902b48458c76daeb72605eb, type: 3}
   angrySprite: {fileID: 21300000, guid: 438a04d1fc7407d46bc6d25eb4935c09, type: 3}
+  feverEmoteSprite: {fileID: 0}
+  thirtyNineDegreeSprite: {fileID: 0}
 --- !u!114 &2000593398
 MonoBehaviour:
   m_ObjectHideFlags: 0

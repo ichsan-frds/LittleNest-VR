@@ -4,7 +4,7 @@ using System.Collections;
 public class TowelInteraction : MonoBehaviour
 {
     public TaskManager taskManager;
-    public CountdownTimer countdownTimer; // ✅ Wajib di-assign di Inspector
+    public CountdownTimerStage1 countdownTimer; // ✅ Wajib di-assign di Inspector
     public EmoteController emoteController;
     public WetEffectManager wetEffectManager;
 
