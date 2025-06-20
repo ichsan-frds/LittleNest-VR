@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial5.unity
     guid: fb73160ac9ed1d1449eadb9938e642f9
   - enabled: 1
-    path: Assets/Scenes/Main Room.unity
+    path: Assets/Scenes/Stage 1.unity
     guid: 092db3beb3d9fb949a4c4d37727f462a
   - enabled: 1
     path: Assets/Scenes/Failed.unity
