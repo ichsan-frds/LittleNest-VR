@@ -32,13 +32,16 @@ Tutorial menggunakan teks dan petunjuk visual yang mudah dipahami. Di akhir perm
 ![image](https://github.com/user-attachments/assets/84a2e543-66c1-4013-a1fa-7bee25c06b61)
 
 ### Main Room (Stage 1 & 2)
+![image](https://github.com/user-attachments/assets/08581bc8-ba61-4a0a-b8f1-148740a4c860)
 
 ### Bird Eye View Main Room
 ![image](https://github.com/user-attachments/assets/b34f2c10-2f55-46d4-9a71-281cbd3536d9)
 
 ### Stage 1 Done
+![Image](https://github.com/user-attachments/assets/9ef4af35-b757-4fcb-a347-eb2034381a89)
 
 ### Good Ending
+![Image](https://github.com/user-attachments/assets/b27ea01d-3028-44ed-a218-21036f608062)
 
 ### Bad Ending
-![Uploading image.png…]()
+![Image](https://github.com/user-attachments/assets/b1e95889-75d5-48ff-8646-37ce9267f4b0)
