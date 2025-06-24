@@ -8,6 +8,36 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 65d691c3c5b4bba4d8c0a5edb3500709
+  - enabled: 1
+    path: Assets/Scenes/Tutorial1.unity
+    guid: 1d99d24d453b2b340b75c00ea57fb835
+  - enabled: 1
+    path: Assets/Scenes/Tutorial2.unity
+    guid: f3072f5a1944d1e4e8ab864591f455b7
+  - enabled: 1
+    path: Assets/Scenes/TutorialStage1.unity
+    guid: e740604027d0276469c37b86eb61c1a0
+  - enabled: 1
+    path: Assets/Scenes/TutorialStage2.unity
+    guid: a0e0fc165e670294985891e90e275447
+  - enabled: 1
+    path: Assets/Scenes/Tutorial3.unity
+    guid: a4e0666d048bd9b43a8333c248700c37
+  - enabled: 1
+    path: Assets/Scenes/Tutorial4.unity
+    guid: fb73160ac9ed1d1449eadb9938e642f9
+  - enabled: 1
+    path: Assets/Scenes/Main Room.unity
+    guid: 092db3beb3d9fb949a4c4d37727f462a
+  - enabled: 1
+    path: Assets/Scenes/Failed.unity
+    guid: a07f2f3636e7b7148a2e31a599c035ce
+  - enabled: 1
+    path: Assets/Scenes/Success.unity
+    guid: 946970fd12fc1cc43b7057c4598a78e9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0cc21ad342e5ce446a7619962098454c, type: 2}
