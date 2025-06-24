@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CountdownTimerStage2 : MonoBehaviour
 {
-    public float totalTime = 90f;
+    public float totalTime = 135f; // Diperbarui: 90 (task 0 & 1) + 45 (task 2) = 135 detik
     private float remainingTime;
     public TextMeshProUGUI timerText;
     private bool isRunning = true;
@@ -13,19 +13,26 @@ public class CountdownTimerStage2 : MonoBehaviour
     public TaskManager2 taskManager;
 
     private float taskStartTime;
-    public float maxTaskTime = 45f; // Durasi maksimal per task (1,5 menit)
+    public float maxTaskTime = 45f; // Tetap 45 detik per task
     private bool[] taskCompleted;
     private int currentTaskIndex = 0;
     private bool isTaskRunning = true;
 
     public float delayBetweenTasks = 0.5f;
 
-    void Awake()
+    void Start()
     {
-        int totalTasks = 2;
+        if (taskManager == null)
+        {
+            taskManager = FindObjectOfType<TaskManager2>();
+            Debug.LogWarning("❗ taskManager di-assign otomatis via FindObjectOfType");
+        }
+
+        // Perbarui jumlah total task di sini atau pastikan TaskManager2 yang menentukan
+        int totalTasks = 3; // Ada 3 task sekarang: Mengukur Suhu, Memberi Obat, Mengompres Bayi
         if (taskManager != null)
         {
-            totalTasks = taskManager.GetTotalTasks();
+            totalTasks = taskManager.GetTotalTasks(); // Lebih baik mengambil dari TaskManager2
         }
         taskCompleted = new bool[totalTasks];
 
@@ -34,11 +41,8 @@ public class CountdownTimerStage2 : MonoBehaviour
             taskCompleted[i] = false;
         }
 
-        Debug.Log($"CountdownTimerStage2: taskCompleted array diinisialisasi di Awake dengan ukuran: {taskCompleted.Length}");
-    }
+        Debug.Log($"CountdownTimerStage2: taskCompleted array diinisialisasi di Start dengan ukuran: {taskCompleted.Length}");
 
-    void Start()
-    {
         remainingTime = totalTime;
         taskStartTime = totalTime;
 
@@ -71,7 +75,6 @@ public class CountdownTimerStage2 : MonoBehaviour
 
                 if (elapsed > maxTaskTime)
                 {
-                    // ✅ Matikan task SEBELUM tandai gagal supaya tidak terjadi eksekusi berulang
                     isTaskRunning = false;
                     MarkCurrentTaskAsFailed();
                 }
@@ -83,6 +86,7 @@ public class CountdownTimerStage2 : MonoBehaviour
             isRunning = false;
             UpdateTimerDisplay();
             Debug.Log("⏰ Timer selesai!");
+            // Opsional: tambahkan logika akhir permainan atau transisi stage di sini
         }
     }
 
@@ -105,9 +109,20 @@ public class CountdownTimerStage2 : MonoBehaviour
             return;
         }
 
-        isTaskRunning = false; // ✅ Hentikan task saat dinyatakan berhasil
+        Debug.Log($"[DEBUG] currentTaskIndex: {currentTaskIndex}, taskCompleted.Length: {taskCompleted.Length}, taskCompleted[currentTaskIndex]: {taskCompleted[currentTaskIndex]}");
+
+        isTaskRunning = false;
         taskCompleted[currentTaskIndex] = true;
-        indicatorStatus?.SetTaskStatus(currentTaskIndex, true);
+
+        if (indicatorStatus != null)
+        {
+            indicatorStatus.SetTaskStatus(currentTaskIndex, true); // true untuk sukses (hijau)
+            Debug.Log($"[DEBUG] Memanggil SetTaskStatus untuk index {currentTaskIndex} dengan status BENAR");
+        }
+        else
+        {
+            Debug.LogError("indicatorStatus tidak terhubung di Inspector!");
+        }
 
         taskManager?.ShowOnlyCurrentTask(currentTaskIndex, TaskManager2.TaskResult.Success);
 
@@ -125,8 +140,19 @@ public class CountdownTimerStage2 : MonoBehaviour
             return;
         }
 
+        Debug.Log($"[DEBUG] currentTaskIndex: {currentTaskIndex}, taskCompleted.Length: {taskCompleted.Length}, taskCompleted[currentTaskIndex]: {taskCompleted[currentTaskIndex]}");
+
         taskCompleted[currentTaskIndex] = true;
-        indicatorStatus?.SetTaskStatus(currentTaskIndex, false);
+
+        if (indicatorStatus != null)
+        {
+            indicatorStatus.SetTaskStatus(currentTaskIndex, false); // false untuk gagal (merah)
+            Debug.Log($"[DEBUG] Memanggil SetTaskStatus untuk index {currentTaskIndex} dengan status GAGAL");
+        }
+        else
+        {
+            Debug.LogError("indicatorStatus tidak terhubung di Inspector!");
+        }
 
         taskManager?.ShowOnlyCurrentTask(currentTaskIndex, TaskManager2.TaskResult.Failed);
 
@@ -156,7 +182,8 @@ public class CountdownTimerStage2 : MonoBehaviour
         {
             Debug.Log("🎉 Semua task selesai!");
             taskManager?.ShowOnlyCurrentTask(currentTaskIndex, TaskManager2.TaskResult.None);
-            isRunning = false;
+            isRunning = false; // Hentikan timer jika semua task selesai
+            // Tambahkan logika untuk menyelesaikan stage atau berpindah ke stage berikutnya di sini
         }
     }
 
@@ -168,12 +195,9 @@ public class CountdownTimerStage2 : MonoBehaviour
         taskStartTime = totalTime;
         isTaskRunning = true;
 
-        if (taskCompleted == null || taskCompleted.Length == 0)
-        {
-            int totalTasks = (taskManager != null) ? taskManager.GetTotalTasks() : 2;
-            taskCompleted = new bool[totalTasks];
-            Debug.Log($"CountdownTimerStage2: taskCompleted array diinisialisasi ulang di ResetTimer dengan ukuran: {taskCompleted.Length}");
-        }
+        int totalTasks = (taskManager != null) ? taskManager.GetTotalTasks() : 3; // Pastikan ini juga sesuai dengan TaskManager2
+        taskCompleted = new bool[totalTasks];
+        Debug.Log($"CountdownTimerStage2: taskCompleted array diinisialisasi ulang di ResetTimer dengan ukuran: {taskCompleted.Length}");
 
         for (int i = 0; i < taskCompleted.Length; i++)
             taskCompleted[i] = false;
