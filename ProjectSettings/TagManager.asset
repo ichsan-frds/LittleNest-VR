@@ -10,6 +10,7 @@ TagManager:
   - Diaper
   - Bottle
   - BabyCaucasian
+  - Target
   layers:
   - Default
   - TransparentFX
