@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,34 +9,48 @@ public class SceneLoader : MonoBehaviour
     // Fungsi ini dipanggil dari tombol
     public void LoadSceneByName()
     {
-        try
+        if (string.IsNullOrEmpty(sceneName))
         {
-            if (!string.IsNullOrEmpty(sceneName))
-            {
-                Debug.Log("🔄 Memulai load scene: " + sceneName);
-
-                // Cek apakah scene tersedia di build settings
-                if (IsSceneInBuildSettings(sceneName))
-                {
-                    SceneManager.LoadScene(sceneName);
-                }
-                else
-                {
-                    Debug.LogError("❌ Scene '" + sceneName + "' tidak ada di Build Settings!");
-                }
-            }
-            else
-            {
-                Debug.LogWarning("⚠️ Scene name belum diisi di Inspector!");
-            }
+            Debug.LogWarning("⚠️ Scene name belum diisi di Inspector!");
+            return;
         }
-        catch (System.Exception ex)
+
+        if (IsSceneInBuildSettings(sceneName))
         {
-            Debug.LogError("❌ Gagal load scene: " + ex.Message + "\nStackTrace:\n" + ex.StackTrace);
+            Debug.Log("🔄 Memulai async load scene: " + sceneName);
+            StartCoroutine(LoadSceneAsync(sceneName));
+        }
+        else
+        {
+            Debug.LogError("❌ Scene '" + sceneName + "' tidak ada di Build Settings!");
         }
     }
 
-    // Fungsi bantu untuk mengecek apakah scene ada di Build Settings
+    // Coroutine untuk load scene tanpa freeze
+    private IEnumerator LoadSceneAsync(string sceneToLoad)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad);
+
+        // Opsional: tampilkan loading UI di sini
+
+        asyncLoad.allowSceneActivation = false;
+
+        while (!asyncLoad.isDone)
+        {
+            Debug.Log("📦 Progress loading: " + (asyncLoad.progress * 100f) + "%");
+
+            // Progress akan mentok di 0.9 sebelum scene benar-benar siap
+            if (asyncLoad.progress >= 0.9f)
+            {
+                Debug.Log("✅ Scene siap, aktivasi...");
+                asyncLoad.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
+    }
+
+    // Cek apakah scene ada di Build Settings
     private bool IsSceneInBuildSettings(string sceneToCheck)
     {
         int sceneCount = SceneManager.sceneCountInBuildSettings;
