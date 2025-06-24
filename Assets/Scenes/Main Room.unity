@@ -1148,6 +1148,7 @@ MonoBehaviour:
   isiSendok: {fileID: 702916293}
   emoteController: {fileID: 2000593397}
   taskManager: {fileID: 597887085}
+  countdownTimer: {fileID: 0}
 --- !u!1 &103498627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,6 +2164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   taskManager: {fileID: 597887085}
+  countdownTimer: {fileID: 0}
   emoteController: {fileID: 2000593397}
 --- !u!54 &177186006
 Rigidbody:
@@ -3300,6 +3302,7 @@ MonoBehaviour:
   timerText: {fileID: 0}
   indicatorStatus: {fileID: 0}
   taskManager: {fileID: 0}
+  spoonInteraction: {fileID: 0}
 --- !u!114 &318087010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9357,6 +9360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   taskManager: {fileID: 597887085}
+  countdownTimer: {fileID: 0}
   emoteController: {fileID: 2000593397}
 --- !u!1 &1254533736
 GameObject:
@@ -10163,6 +10167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   taskManager: {fileID: 597887085}
+  countdownTimer: {fileID: 0}
   emoteController: {fileID: 2000593397}
   wetEffectManager: {fileID: 1391602434}
 --- !u!54 &1377124797
@@ -16378,6 +16383,7 @@ MonoBehaviour:
   timerText: {fileID: 318087010}
   indicatorStatus: {fileID: 692527107}
   taskManager: {fileID: 597887085}
+  spoonInteraction: {fileID: 0}
 --- !u!4 &1592433492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 677336156131347977, guid: 80e5bbfa6aa12b34ca98423c9e7a0f86, type: 3}
@@ -27508,6 +27514,10 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_Name
       value: XR Device Simulator
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
