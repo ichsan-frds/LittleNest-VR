@@ -1,4 +1,3 @@
-// Contoh: ThermometerInteraction.cs
 using UnityEngine;
 
 public class ThermometerInteraction : MonoBehaviour
@@ -21,32 +20,42 @@ public class ThermometerInteraction : MonoBehaviour
         {
             Debug.LogError("❌ ThermometerInteraction: EmoteController belum di-assign!");
         }
+
+        // ✅ Cari otomatis CountdownTimerStage2 jika belum di-assign
         if (countdownTimer == null)
         {
-            Debug.LogError("❌ ThermometerInteraction: CountdownTimerStage2 belum di-assign!");
+            countdownTimer = FindObjectOfType<CountdownTimerStage2>();
+
+            if (countdownTimer != null)
+            {
+                Debug.Log("🔁 CountdownTimerStage2 ditemukan otomatis.");
+            }
+            else
+            {
+                Debug.LogError("❌ ThermometerInteraction: CountdownTimerStage2 belum di-assign dan tidak ditemukan di scene!");
+            }
         }
     }
 
     void Update()
     {
-        if (isTouchingBaby && !actionHasBeenTriggered)
+        if (isTouchingBaby && !actionHasBeenTriggered && countdownTimer != null)
         {
             currentContactTime += Time.deltaTime;
 
             if (currentContactTime >= requiredContactDuration)
             {
-                // VALIDASI TASK: Pastikan ini adalah task "Mengukur Suhu Bayi" (asumsi Task 0)
-                if (countdownTimer != null && countdownTimer.GetCurrentActiveTaskIndex() == 0) // Asumsi "Mengukur Suhu Bayi" adalah task index 0
+                // VALIDASI TASK: Asumsi Task 0 adalah "Mengukur Suhu Bayi"
+                int currentTask = countdownTimer.GetCurrentActiveTaskIndex();
+                if (currentTask == 0)
                 {
-                    Debug.Log("Termometer: Kontak cukup lama, suhu bayi diukur.");
-                    
-                    // Ini adalah kunci: Beri tahu CountdownTimerStage2 bahwa task berhasil!
+                    Debug.Log("✅ Termometer: Kontak cukup lama, suhu bayi diukur.");
                     countdownTimer.MarkCurrentTaskAsSuccess();
-                    actionHasBeenTriggered = true; // Tandai aksi sudah dilakukan
+                    actionHasBeenTriggered = true;
                 }
-                else if (countdownTimer != null)
+                else
                 {
-                    Debug.LogWarning($"Termometer: Bukan waktu yang tepat untuk mengukur suhu! Task aktif: {countdownTimer.GetCurrentActiveTaskIndex()}.");
+                    Debug.LogWarning($"⚠️ Termometer: Bukan waktunya mengukur suhu! Task aktif: {currentTask}");
                     isTouchingBaby = false;
                     currentContactTime = 0f;
                 }
@@ -58,7 +67,7 @@ public class ThermometerInteraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(babyTag))
         {
-            Debug.Log("Termometer: Mulai bersentuhan dengan bayi.");
+            Debug.Log("👶 Termometer: Mulai bersentuhan dengan bayi.");
             isTouchingBaby = true;
             currentContactTime = 0f;
             actionHasBeenTriggered = false;
@@ -69,7 +78,7 @@ public class ThermometerInteraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(babyTag))
         {
-            Debug.Log("Termometer: Berhenti bersentuhan dengan bayi.");
+            Debug.Log("🛑 Termometer: Berhenti bersentuhan dengan bayi.");
             isTouchingBaby = false;
             currentContactTime = 0f;
         }

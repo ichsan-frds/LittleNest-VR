@@ -1597,6 +1597,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6258557884557376308, guid: 26b8166c4f06708408d1d04ab4ee35d8, type: 3}
   m_PrefabInstance: {fileID: 1228378845}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &164231743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 164231745}
+  - component: {fileID: 164231744}
+  m_Layer: 0
+  m_Name: 'TimeFixer '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &164231744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164231743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53af2223ee0b256408b5def75a952e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &164231745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164231743}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.767, y: 2.0490003, z: 15.355999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &167717315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2476,7 +2520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emoteController: {fileID: 2000593397}
-  countdownTimer: {fileID: 0}
+  countdownTimer: {fileID: 1221343211}
   babyTag: Baby
   requiredContactDuration: 5
 --- !u!1001 &272755163
@@ -2563,6 +2607,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 441856366}
+    - target: {fileID: 4837942043424170029, guid: e2698219e3231e94c8765d49b9dd5cff, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5030734266366949665, guid: e2698219e3231e94c8765d49b9dd5cff, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5030734266366949668, guid: e2698219e3231e94c8765d49b9dd5cff, type: 3}
       propertyPath: m_Camera
       value: 
@@ -6660,7 +6712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emoteController: {fileID: 2000593397}
-  countdownTimer: {fileID: 0}
+  countdownTimer: {fileID: 1221343211}
   babyTag: Baby
   requiredContactDuration: 2
 --- !u!1001 &958345864
@@ -21197,7 +21249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emoteController: {fileID: 2000593397}
-  countdownTimer: {fileID: 0}
+  countdownTimer: {fileID: 1221343211}
   babyTag: Baby
   requiredContactDuration: 2
 --- !u!1 &1700553108
@@ -33695,3 +33747,4 @@ SceneRoots:
   - {fileID: 1939374573}
   - {fileID: 1254533738}
   - {fileID: 268141272}
+  - {fileID: 164231745}
