@@ -3077,6 +3077,7 @@ MonoBehaviour:
   timerText: {fileID: 0}
   indicatorStatus: {fileID: 0}
   taskManager: {fileID: 0}
+  spoonInteraction: {fileID: 0}
 --- !u!114 &318087010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16658,6 +16659,7 @@ MonoBehaviour:
   timerText: {fileID: 318087010}
   indicatorStatus: {fileID: 692527107}
   taskManager: {fileID: 597887085}
+  spoonInteraction: {fileID: 0}
 --- !u!4 &1592433492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 677336156131347977, guid: 80e5bbfa6aa12b34ca98423c9e7a0f86, type: 3}
@@ -27888,7 +27890,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29570,6 +29572,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   happySprite: {fileID: 21300000, guid: d2f330483902b48458c76daeb72605eb, type: 3}
   angrySprite: {fileID: 21300000, guid: 438a04d1fc7407d46bc6d25eb4935c09, type: 3}
+  feverEmoteSprite: {fileID: 0}
+  thirtyNineDegreeSprite: {fileID: 0}
+  loveSprite: {fileID: 0}
 --- !u!114 &2000593398
 MonoBehaviour:
   m_ObjectHideFlags: 0
