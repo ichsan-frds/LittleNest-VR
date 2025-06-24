@@ -179,8 +179,8 @@ MonoBehaviour:
   m_text: Try again to improve your caregiving skills and make sure your little one
     stays safe and happy.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 055490e3ceded884bbfcef5581db6497, type: 2}
-  m_sharedMaterial: {fileID: -7749836774120913383, guid: 055490e3ceded884bbfcef5581db6497, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2409bb918f472b444ae68053d15cfe98, type: 2}
+  m_sharedMaterial: {fileID: 2482932641668430516, guid: 2409bb918f472b444ae68053d15cfe98, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -372,8 +372,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Mission Incomplete
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6030c1e3107127144819f36f0d1875b9, type: 2}
-  m_sharedMaterial: {fileID: -8125513810402052320, guid: 6030c1e3107127144819f36f0d1875b9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8fe2261baa2c2804fb9174f0ae57243d, type: 2}
+  m_sharedMaterial: {fileID: 3679715940892955223, guid: 8fe2261baa2c2804fb9174f0ae57243d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -680,8 +680,8 @@ MonoBehaviour:
   m_text: "Unfortunately, your baby didn\u2019t receive the care needed in time.\LThis
     led to discomfort, distress, or even critical health conditions."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 055490e3ceded884bbfcef5581db6497, type: 2}
-  m_sharedMaterial: {fileID: -7749836774120913383, guid: 055490e3ceded884bbfcef5581db6497, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2409bb918f472b444ae68053d15cfe98, type: 2}
+  m_sharedMaterial: {fileID: 2482932641668430516, guid: 2409bb918f472b444ae68053d15cfe98, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -816,8 +816,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Revisit Tutorial
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
-  m_sharedMaterial: {fileID: 502660372515422852, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0d3b925af6c19534bb03d4942750c2f4, type: 2}
+  m_sharedMaterial: {fileID: 2676660597266064777, guid: 0d3b925af6c19534bb03d4942750c2f4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1598,8 +1598,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Retry Stage
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
-  m_sharedMaterial: {fileID: 502660372515422852, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1734,8 +1734,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Back to \nmain menu"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
-  m_sharedMaterial: {fileID: 502660372515422852, guid: 3175daf97b6c80046b4f2800a0d46589, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
