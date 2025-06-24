@@ -314,6 +314,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Device Simulator
       objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -830,7 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520696ee812607e41ab12422593a8c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Tutorial3
+  sceneName: Tutorial2
 --- !u!4 &571989210
 Transform:
   m_ObjectHideFlags: 0
@@ -1674,7 +1678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520696ee812607e41ab12422593a8c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Tutorial5
+  sceneName: Tutorial4
 --- !u!4 &1200577701
 Transform:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private string sceneName;
 
-    // Fungsi ini dipanggil dari tombol
+    // Dipanggil dari tombol
     public void LoadSceneByName()
     {
         if (string.IsNullOrEmpty(sceneName))
@@ -26,28 +26,31 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
-    // Coroutine untuk load scene tanpa freeze
+    // Coroutine untuk loading scene tanpa freeze
     private IEnumerator LoadSceneAsync(string sceneToLoad)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad);
-
-        // Opsional: tampilkan loading UI di sini
-
         asyncLoad.allowSceneActivation = false;
 
-        while (!asyncLoad.isDone)
+        // Loading sampai 90%
+        while (asyncLoad.progress < 0.9f)
         {
             Debug.Log("📦 Progress loading: " + (asyncLoad.progress * 100f) + "%");
-
-            // Progress akan mentok di 0.9 sebelum scene benar-benar siap
-            if (asyncLoad.progress >= 0.9f)
-            {
-                Debug.Log("✅ Scene siap, aktivasi...");
-                asyncLoad.allowSceneActivation = true;
-            }
-
             yield return null;
         }
+
+        // Scene siap diaktifkan
+        Debug.Log("✅ Scene siap, aktivasi...");
+        yield return new WaitForSeconds(0.1f); // jeda opsional
+        asyncLoad.allowSceneActivation = true;
+
+        // Tunggu sampai selesai
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        Debug.Log("🎯 Scene berhasil diaktifkan!");
     }
 
     // Cek apakah scene ada di Build Settings
