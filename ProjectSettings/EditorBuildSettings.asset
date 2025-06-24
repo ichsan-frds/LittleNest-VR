@@ -36,17 +36,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage 1.unity
     guid: c4ba475965f25c348876e90f205887d8
   - enabled: 1
-    path: Assets/Scenes/Main Room.unity
-    guid: 092db3beb3d9fb949a4c4d37727f462a
-  - enabled: 1
-    path: Assets/Scenes/Failed.unity
-    guid: a07f2f3636e7b7148a2e31a599c035ce
-  - enabled: 1
     path: Assets/Scenes/Success.unity
     guid: 946970fd12fc1cc43b7057c4598a78e9
   - enabled: 1
     path: Assets/Scenes/TutorialStage2.unity
     guid: 9cda5ac148a65e9448eeec9093f8692e
+  - enabled: 1
+    path: Assets/Scenes/Main Room.unity
+    guid: 092db3beb3d9fb949a4c4d37727f462a
+  - enabled: 1
+    path: Assets/Scenes/Failed.unity
+    guid: a07f2f3636e7b7148a2e31a599c035ce
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0cc21ad342e5ce446a7619962098454c, type: 2}

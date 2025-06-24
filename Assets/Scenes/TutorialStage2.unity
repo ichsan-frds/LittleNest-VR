@@ -741,7 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520696ee812607e41ab12422593a8c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Tutorial3
+  sceneName: Success
 --- !u!4 &571989210
 Transform:
   m_ObjectHideFlags: 0
@@ -1592,7 +1592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520696ee812607e41ab12422593a8c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Stage
+  sceneName: Main Room
 --- !u!4 &1200577701
 Transform:
   m_ObjectHideFlags: 0
