@@ -6,7 +6,7 @@ public class SpoonInteraction : MonoBehaviour
     public GameObject isiSendok;
     public EmoteController emoteController;
     public TaskManager taskManager;
-    public CountdownTimer countdownTimer; // ✅ WAJIB assign di Inspector
+    public CountdownTimerStage1 countdownTimer; // ✅ WAJIB assign di Inspector
 
     private bool hasFedBaby = false;
 
