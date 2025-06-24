@@ -16659,7 +16659,7 @@ MonoBehaviour:
   timerText: {fileID: 318087010}
   indicatorStatus: {fileID: 692527107}
   taskManager: {fileID: 597887085}
-  spoonInteraction: {fileID: 0}
+  spoonInteraction: {fileID: 95739740}
 --- !u!4 &1592433492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 677336156131347977, guid: 80e5bbfa6aa12b34ca98423c9e7a0f86, type: 3}

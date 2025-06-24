@@ -13,12 +13,11 @@ public class DiaperInteraction : MonoBehaviour
     {
         Debug.Log($"[DIAPER DEBUG] Trigger: {gameObject.name} menyentuh: {other.name}, Tag: {other.tag}");
 
-        // ✅ Debug lebih detail untuk troubleshooting
         if (taskManager != null)
         {
             Debug.Log($"[DIAPER DEBUG] TaskManager.GetCurrentTaskIndex() = {taskManager.GetCurrentTaskIndex()}");
         }
-        
+
         if (countdownTimer != null)
         {
             Debug.Log($"[DIAPER DEBUG] CountdownTimer.GetCurrentTaskIndex() = {countdownTimer.GetCurrentTaskIndex()}");
@@ -30,20 +29,17 @@ public class DiaperInteraction : MonoBehaviour
         {
             Debug.Log("[DIAPER DEBUG] BAYI terdeteksi!");
 
-            // ✅ Cek dari kedua sumber untuk memastikan
             int taskIndex = taskManager != null ? taskManager.GetCurrentTaskIndex() : -1;
             int timerIndex = countdownTimer != null ? countdownTimer.GetCurrentTaskIndex() : -1;
-            
+
             Debug.Log($"[DIAPER DEBUG] TaskManager Index: {taskIndex}, Timer Index: {timerIndex}");
 
-            // ✅ Gunakan CountdownTimer sebagai sumber utama karena lebih akurat
             bool isDiaperTime = (timerIndex == 1) || (taskIndex == 1);
-            
+
             if (isDiaperTime)
             {
                 Debug.Log("[DIAPER ✅] Waktu ganti popok! Memproses...");
-                
-                // ✅ Panggil CountdownTimer dulu, biarkan dia yang handle TaskManager
+
                 if (countdownTimer != null)
                 {
                     countdownTimer.NotifyTaskSuccessFromInteraction();
@@ -51,7 +47,6 @@ public class DiaperInteraction : MonoBehaviour
                 }
                 else if (taskManager != null)
                 {
-                    // Fallback jika CountdownTimer tidak ada
                     Debug.LogWarning("[DIAPER] CountdownTimer null! Menggunakan TaskManager langsung.");
                     taskManager.MarkCurrentTaskComplete();
                     taskManager.NextTask();
@@ -70,7 +65,14 @@ public class DiaperInteraction : MonoBehaviour
                     Debug.Log("[DIAPER] Popok dilepas dari interactor sebelum dihancurkan.");
                 }
 
-                // Tambahkan delay singkat sebelum destroy
+                // Nonaktifkan collider & renderer agar langsung terlihat "hilang"
+                Collider col = GetComponent<Collider>();
+                if (col != null) col.enabled = false;
+
+                Renderer rend = GetComponent<Renderer>();
+                if (rend != null) rend.enabled = false;
+
+                // Hancurkan root object setelah delay singkat
                 Invoke(nameof(DestroySelf), 0.1f);
             }
             else
@@ -87,7 +89,8 @@ public class DiaperInteraction : MonoBehaviour
 
     private void DestroySelf()
     {
-        Debug.Log($"[DIAPER ✅] Popok ({gameObject.name}) dihancurkan dari scene.");
-        Destroy(gameObject);
+        GameObject target = transform.root.gameObject;
+        Debug.Log($"[DIAPER ✅] Popok ({target.name}) dihancurkan dari scene.");
+        Destroy(target);
     }
 }

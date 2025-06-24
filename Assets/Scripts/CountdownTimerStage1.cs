@@ -15,7 +15,7 @@ public class CountdownTimerStage1 : MonoBehaviour
     public SpoonInteraction spoonInteraction;
 
     private float taskStartTime;
-    private float maxTaskTime = 120f;
+    private float maxTaskTime = 90f;
     private bool[] taskCompleted;
 
     private bool isTaskRunning = true;
@@ -40,7 +40,7 @@ public class CountdownTimerStage1 : MonoBehaviour
 
         int currentTaskIndex = taskManager.GetCurrentTaskIndex();
         taskManager?.ShowOnlyCurrentTask(currentTaskIndex);
-        StartCoroutine(DelayStartNextTask()); // ✅ pastikan timer task mulai setelah frame pertama
+        StartCoroutine(DelayStartNextTask());
     }
 
     void Update()
