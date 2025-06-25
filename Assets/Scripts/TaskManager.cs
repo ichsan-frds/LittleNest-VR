@@ -11,7 +11,7 @@ public class TaskManager : MonoBehaviour
         "Mengganti Popok",
         "Menenangkan Bayi",
         "Memberi Makan",
-        "Menidurkan"
+        "Memberi Susu"
     };
 
     private int currentTaskIndex = 0;
